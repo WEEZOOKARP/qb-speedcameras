@@ -1,23 +1,23 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
-RegisterServerEvent('qb-speedcamera:PayBill60Zone')
+RegisterServerEvent('qb-speedcamera:PayBill60Zone') -- 60km camera
 AddEventHandler('qb-speedcamera:PayBill60Zone', function()
 	local xPlayer = QBCore.Functions.GetPlayer(source)
-	local totalAmount = 200
+	local totalAmount = 200 -- Change me to charge less/more
 	xPlayer.Functions.RemoveMoney("bank", totalAmount)
 end)
 
-RegisterServerEvent('qb-speedcamera:PayBill80Zone')
+RegisterServerEvent('qb-speedcamera:PayBill80Zone') -- 80km camera
 AddEventHandler('qb-speedcamera:PayBill80Zone', function()
 	local xPlayer = QBCore.Functions.GetPlayer(source)
-	local totalAmount = 200
+	local totalAmount = 200 -- Change me to charge less/more
 	xPlayer.Functions.RemoveMoney("bank", totalAmount)
 end)
 
-RegisterServerEvent('qb-speedcamera:PayBill120Zone')
+RegisterServerEvent('qb-speedcamera:PayBill120Zone') -- 120km camera
 AddEventHandler('qb-speedcamera:PayBill120Zone', function()
 	local xPlayer = QBCore.Functions.GetPlayer(source)
-	local totalAmount = 200
+	local totalAmount = 200 -- Change me to charge less/more
 	xPlayer.Functions.RemoveMoney("bank", totalAmount)
 end)
 
