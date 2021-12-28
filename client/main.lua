@@ -1,6 +1,6 @@
 QBCore = exports['qb-core']:GetCoreObject()
 
-local useBilling = false -- OPTIONS: (true/false) DONT CHANGE THIS
+local useBilling = false -- OPTIONS: (true/false) Do not change this unless you know what you are doing
 local useCameraSound = true -- OPTIONS: (true/false)
 local useFlashingScreen = true -- OPTIONS: (true/false)
 local useBlips = true -- OPTIONS: (true/false)
@@ -20,6 +20,10 @@ local Keys = {
 }
 local PlayerData = {}
 local hasBeenCaught = false
+
+function nonbilling()
+	-- Insert code here to execute when player is caught by speedcamera and you don't want to fine them
+end
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
 AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
@@ -107,7 +111,7 @@ Citizen.CreateThread(function()
 					if IsPedInAnyVehicle(playerPed, false) then
 						if (GetPedInVehicleSeat(playerCar, -1) == playerPed) then
 							if hasBeenCaught == false then
-                                -- Made Job only
+                                				-- Made Job only
 								if PlayerData.job ~= nil and (PlayerData.job.name == 'police' or PlayerData.job.name == 'ambulance') then
 								--if GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "POLICE" then -- BLACKLISTED VEHICLE
 								--elseif GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "POLICE2" then -- BLACKLISTED VEHICLE
@@ -117,16 +121,13 @@ Citizen.CreateThread(function()
 								--elseif GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "POLICET" then -- BLACKLISTED VEHICLE
 								--elseif GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "FIRETRUK" then -- BLACKLISTED VEHICLE
 								--elseif GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "AMBULAN" then -- BLACKLISTED VEHICLE
-								-- VEHICLES ABOVE ARE BLACKLISTED
 								else
 									-- ALERT POLICE (START)
 									if alertPolice == true then
-										if SpeedKM > alertSpeed then
-											
+										if SpeedKM > alertSpeed then						
 											local playerPed = PlayerPedId()
-	                                        PedPosition		= GetEntityCoords(playerPed)
-	
-	                                        local PlayerCoords = { x = PedPosition.x, y = PedPosition.y, z = PedPosition.z }
+	                                        					PedPosition = GetEntityCoords(playerPed)
+						                                        local PlayerCoords = { x = PedPosition.x, y = PedPosition.y, z = PedPosition.z }
 										end
 									end
 
@@ -146,10 +147,9 @@ Citizen.CreateThread(function()
 									QBCore.Functions.Notify("you have been fined for speed exceeding maximum limit exceeded: 60KM", "error")
 									
 									if useBilling == true then
-                                        -- OLD esx
+                                        					nonbilling()
 									else
 										TriggerServerEvent('qb-speedcamera:PayBill60Zone')
-										
 									end
 										
 									hasBeenCaught = true
@@ -158,10 +158,9 @@ Citizen.CreateThread(function()
 							end
 						end
 					end
-					
-					hasBeenCaught = false
-                    Citizen.Wait(5000) 
-				end
+				hasBeenCaught = false
+                   		Citizen.Wait(5000) 
+		end
             end
         end
     end
@@ -187,7 +186,7 @@ Citizen.CreateThread(function()
 					if IsPedInAnyVehicle(playerPed, false) then
 						if (GetPedInVehicleSeat(playerCar, -1) == playerPed) then					
 							if hasBeenCaught == false then
-                                -- Made Job only
+                                				-- Made Job only
 								if PlayerData.job ~= nil and (PlayerData.job.name == 'police' or PlayerData.job.name == 'ambulance') then
 								--if GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "POLICE" then -- BLACKLISTED VEHICLE
 								--elseif GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "POLICE2" then -- BLACKLISTED VEHICLE
@@ -197,17 +196,14 @@ Citizen.CreateThread(function()
 								--elseif GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "POLICET" then -- BLACKLISTED VEHICLE
 								--elseif GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "FIRETRUK" then -- BLACKLISTED VEHICLE
 								--elseif GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "AMBULAN" then -- BLACKLISTED VEHICLE
-								-- VEHICLES ABOVE ARE BLACKLISTED
 								else
 									-- ALERT POLICE (START)
 									if alertPolice == true then
 										if SpeedKM > alertSpeed then
 											local x,y,z = table.unpack(GetEntityCoords(GetPlayerPed(-1), false))
-											
 											local playerPed = PlayerPedId()
-	                                        PedPosition		= GetEntityCoords(playerPed)
-	
-	                                        local PlayerCoords = { x = PedPosition.x, y = PedPosition.y, z = PedPosition.z }
+	                                        					PedPosition = GetEntityCoords(playerPed)
+	                                       						local PlayerCoords = { x = PedPosition.x, y = PedPosition.y, z = PedPosition.z }
 										end
 									end
 									
@@ -227,10 +223,9 @@ Citizen.CreateThread(function()
 									QBCore.Functions.Notify("you have been fined for speed exceeding maximum limit exceeded: 80KM.", "error")
 									
 									if useBilling == true then
-                                        -- old ESX function
+										nonbilling()
 									else
 										TriggerServerEvent('qb-speedcamera:PayBill80Zone')
-										
 									end
 										
 									hasBeenCaught = true
@@ -239,7 +234,6 @@ Citizen.CreateThread(function()
 							end
 						end
 					end
-					
 					hasBeenCaught = false
 				end
             end
@@ -267,7 +261,7 @@ Citizen.CreateThread(function()
 					if IsPedInAnyVehicle(playerPed, false) then
 						if (GetPedInVehicleSeat(playerCar, -1) == playerPed) then 
 							if hasBeenCaught == false then
-                                -- Made for jobs 
+                                				-- Made for jobs 
 								if PlayerData.job ~= nil and (PlayerData.job.name == 'police' or PlayerData.job.name == 'ambulance') then
 								--if GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "POLICE" then -- BLACKLISTED VEHICLE
 								--elseif GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "POLICE2" then -- BLACKLISTED VEHICLE
@@ -277,22 +271,15 @@ Citizen.CreateThread(function()
 								--elseif GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "POLICET" then -- BLACKLISTED VEHICLE
 								--elseif GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "FIRETRUK" then -- BLACKLISTED VEHICLE
 								--elseif GetDisplayNameFromVehicleModel(GetEntityModel(veh)) == "AMBULAN" then -- BLACKLISTED VEHICLE
-								-- VEHICLES ABOVE ARE BLACKLISTED
 								else
 									if alertPolice == true then
 										if SpeedKM > alertSpeed then
 											local x,y,z = table.unpack(GetEntityCoords(GetPlayerPed(-1), false))
-											
-											
 											local playerPed = PlayerPedId()
-	                                        PedPosition		= GetEntityCoords(playerPed)
-	
-	                                        local PlayerCoords = { x = PedPosition.x, y = PedPosition.y, z = PedPosition.z }
-										
+	                                        					PedPosition		= GetEntityCoords(playerPed)
+	                                        					local PlayerCoords = { x = PedPosition.x, y = PedPosition.y, z = PedPosition.z }
 										end
 									end
-								
-									
 									if useFlashingScreen == true then
 										TriggerServerEvent('qb-speedcamera:openGUI')
 									end
@@ -309,7 +296,7 @@ Citizen.CreateThread(function()
 									QBCore.Functions.Notify("you have been fined for speed exceeding maximum limit exceeded: 120KM.", "error")
 									
 									if useBilling == true then
-                                        -- OLD ESX
+                                        					nonbilling() 
 									else
 										TriggerServerEvent('qb-speedcamera:PayBill120Zone')
 										
