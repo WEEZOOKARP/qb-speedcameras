@@ -10,3 +10,8 @@ not sure about any other requirements
 
 ## Testing Results
 Tested on WEEZOOKA'S RP and passed tests with flying colours even managing to fine players who were above the speed limit and caught by cameras
+
+## If you don't want to fine the player
+There is a function near the top of client/main.lua which you can put all of the code you want to have executed when the player
+triggers a speedcamera
+you must also change the useBilling = false variable at the top of the file to useBilling = true in order to use the function.
