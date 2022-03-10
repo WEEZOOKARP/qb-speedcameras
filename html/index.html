@@ -3,6 +3,9 @@
 <style>
 .speedcamera {
   display: none;
+  height: 100vh;
+  background-color: #fff;
+  overflow: hidden;
 }
    
 body {
@@ -12,13 +15,6 @@ body {
   margin: 0px;
   overflow: hidden;
 }
-
-img {
-  width: auto;
-  height: auto;
-  min-width: 100%;
-  min-height: 100%;
-} 
 </style>
 
 <head>
@@ -26,23 +22,19 @@ img {
 </head>
 
 <body>
-	<div class="speedcamera">
-		<img src="https://www.macmillandictionary.com/external/slideshow/full/White_full.png">
-	</div>
+	<div class="speedcamera" />
 </body>
 </html>
 
 <script type="text/javascript">
 	$(function() {
-		window.addEventListener('message', function(event) {
-
-			if (event.data.type == "openSpeedcamera"){
-                $('.speedcamera').css('display', 'block')
+			window.addEventListener('message', function(event) {
+			if (event.data.type == "openSpeedcamera") {
+			    $('.speedcamera').css('display', 'block')
+			} else if (event.data.type == "closeSpeedcamera") {
+		            $('.speedcamera').css('display', 'none')
+			}
 				
-			} else if (event.data.type == "closeSpeedcamera"){
-                $('.speedcamera').css('display', 'none')
-			} 
-			
 		});
 	});
 </script>
